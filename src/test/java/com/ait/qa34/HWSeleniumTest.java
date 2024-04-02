@@ -19,7 +19,7 @@ public class HWSeleniumTest {
     WebDriver driver;
 
     @BeforeMethod
-    public void setUp(){
+    public void setUp() {
         driver = new ChromeDriver();
         driver.get("https://demowebshop.tricentis.com/");
         // Максимизируем окно браузера
@@ -68,8 +68,29 @@ public class HWSeleniumTest {
         System.out.println("Общее количество тегов на странице: " + allElements.size());
     }
 
+    @Test
+    public void findTenDifferentElements() {
+        // id -> #id
+        driver.findElement(By.cssSelector("#flyout-cart"));
+        driver.findElement(By.cssSelector("#newsletter-subscribe-block"));
+        // class name -> .className
+        driver.findElement(By.cssSelector(".header-links-wrapper"));
+        driver.findElement(By.cssSelector(".header-logo"));
+        // [name='user']
+        driver.findElement(By.cssSelector("[name='q']"));
+        driver.findElement(By.cssSelector("[data-valmsg-for='NewsletterEmail']"));
+        driver.findElement(By.cssSelector("[href='/']"));
+        // contains -> *
+        driver.findElement(By.cssSelector("[href*='viewed']"));
+        //start -> ^
+        driver.findElement(By.cssSelector("[href^='/about']"));
+        //end on -> $
+        driver.findElement(By.cssSelector("[href$='/apparel']"));
+
+    }
+
     @AfterMethod
-    public void tearDown(){
+    public void tearDown() {
         // Завершаем работу драйвера после выполнения теста
         driver.quit();
     }

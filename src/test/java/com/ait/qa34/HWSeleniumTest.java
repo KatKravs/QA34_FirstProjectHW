@@ -21,7 +21,7 @@ public class HWSeleniumTest {
     @BeforeMethod
     public void setUp() {
         driver = new ChromeDriver();
-        driver.get("https://demowebshop.tricentis.com/");
+        driver.get("https://demowebshop.tricentis.com");
         // Максимизируем окно браузера
         driver.manage().window().maximize();
         // Ожидаем загрузки всех элементов на сайте перед началом теста
@@ -69,7 +69,7 @@ public class HWSeleniumTest {
     }
 
     @Test
-    public void findTenDifferentElements() {
+    public void findTenDifferentElementsByCssSelector() {
         // id -> #id
         driver.findElement(By.cssSelector("#flyout-cart"));
         driver.findElement(By.cssSelector("#newsletter-subscribe-block"));
@@ -87,6 +87,26 @@ public class HWSeleniumTest {
         //end on -> $
         driver.findElement(By.cssSelector("[href$='/apparel']"));
 
+    }
+
+    @Test
+    public void findTenDiffferentElementsByXpath() {
+        // id -> //tag[@id='idName']
+        driver.findElement(By.xpath("//*[@id='flyout-cart']"));
+        driver.findElement(By.xpath("//*[@id='newsletter-subscribe-block']"));
+        // class name -> //tag[@class='className']
+        driver.findElement(By.xpath("//*[@class='header-links-wrapper']"));
+        driver.findElement(By.xpath("//*[@class='header-logo']"));
+        // name -> //*[@name='...']
+        driver.findElement(By.xpath("//*[@name='q']"));
+        driver.findElement(By.xpath("//*[@data-valmsg-for='NewsletterEmail']"));
+        driver.findElement(By.xpath("//*[@href='/']"));
+        // contains -> //*[contains(@attr,'...')]
+        driver.findElement(By.xpath("//*[contains(@href, 'viewed')]"));
+        //start -> //*[starts-with(@attr,'...')]
+        driver.findElement(By.xpath("//*[starts-with(@href, '/about')]"));
+        // end on -> //*[substring(@href, string-length(@href) - string-length('...') +1) = '...']
+        driver.findElement(By.xpath("//*[substring(@href, string-length(@href) - string-length('/apparel') +1) = '/apparel']"));
     }
 
     @AfterMethod

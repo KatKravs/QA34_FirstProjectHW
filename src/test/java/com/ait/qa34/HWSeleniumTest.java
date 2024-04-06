@@ -1,31 +1,13 @@
 package com.ait.qa34;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
-import java.time.Duration;
 
 import java.util.List;
 
 
-public class HWSeleniumTest {
-
-    WebDriver driver;
-
-    @BeforeMethod
-    public void setUp() {
-        driver = new ChromeDriver();
-        driver.get("https://demowebshop.tricentis.com");
-        // Максимизируем окно браузера
-        driver.manage().window().maximize();
-        // Ожидаем загрузки всех элементов на сайте перед началом теста
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-    }
+public class HWSeleniumTest extends TestBase{
 
     @Test
     public void findElementsByTagName() {
@@ -108,9 +90,4 @@ public class HWSeleniumTest {
         driver.findElement(By.xpath("//*[substring(@href, string-length(@href) - string-length('/apparel') +1) = '/apparel']"));
     }
 
-    @AfterMethod
-    public void tearDown() {
-        // Завершаем работу драйвера после выполнения теста
-        driver.quit();
-    }
 }

@@ -28,7 +28,7 @@ public class CreateAccountTest extends TestBase {
         type(By.id("ConfirmPassword"), "Sa12345!");
         // click on Registration button
         click(By.id("register-button"));
-        // assert Sign Out is present
+        // assert CustomerInfo is present
         Assert.assertTrue(isElementPresent(By.xpath("//div[@class='header']//a[@href='/customer/info']")));
     }
 }

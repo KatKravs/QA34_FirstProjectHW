@@ -48,5 +48,7 @@ public class TableTests {
             System.out.println(rows.get(i).getText());
         }
 
+
+
     }
 }

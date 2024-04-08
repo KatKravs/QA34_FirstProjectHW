@@ -42,4 +42,11 @@ public class TestBase {
         driver.findElement(locator).click();
     }
 
+    public int sizeOfItemInShoppinCart() {
+        if (isElementPresent(By.cssSelector(".product"))) {
+            return driver.findElements(By.cssSelector(".product")).size();
+        }
+        return 0;
+    }
+
 }

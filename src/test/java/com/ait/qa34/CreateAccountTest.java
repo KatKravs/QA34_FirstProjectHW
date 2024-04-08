@@ -28,7 +28,8 @@ public class CreateAccountTest extends TestBase {
         type(By.id("ConfirmPassword"), "Sa12345!");
         // click on Registration button
         click(By.id("register-button"));
-        // assert CustomerInfo is present
-        Assert.assertTrue(isElementPresent(By.xpath("//div[@class='header']//a[@href='/customer/info']")));
+        // assert CustomerInfo is present //   ->так не делать,абсолютный путь //div[@class='header']//a[@href='/customer/info']
+        Assert.assertTrue(isElementPresent(By.cssSelector("ul:nth-child(1) .account")));
+        System.out.println(isElementPresent(By.cssSelector("ul:nth-child(1) .account")));
     }
 }

@@ -29,15 +29,16 @@ public class TableTests {
 
     @Test
     public void tableCssTest(){
-        // get row 8, last element
+        System.out.println("====================get row 8, last element======================");
+        //
         WebElement canada = driver.findElement(By.cssSelector("tr:nth-child(8) td:last-child"));
         System.out.println(canada.getText());
-        System.out.println("==========================================");
-        // get row 4
+        System.out.println("===================get row 4=======================");
+        //
         WebElement row4 = driver.findElement(By.cssSelector("tr:nth-child(4)"));
         System.out.println(row4.getText());
-        System.out.println("==========================================");
-        // get numbers of row
+        System.out.println("====================get numbers of row======================");
+        //
         List<WebElement> rows = driver.findElements(By.cssSelector("tr"));
         System.out.println(rows.size());
         for (WebElement element : rows){
@@ -47,8 +48,5 @@ public class TableTests {
         for (int i = 0; i <rows.size() ; i++) {
             System.out.println(rows.get(i).getText());
         }
-
-
-
     }
 }

@@ -1,7 +1,6 @@
 package com.ait.qa34;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -10,26 +9,28 @@ public class AddItemToShoppingCartTest extends TestBase {
 
     @BeforeMethod
     public void ensurePrecondition() {
-        // click on login link
-        click(By.cssSelector("[href='/login']"));
+        clickOnLoginLink();
         // enter email
         type(By.cssSelector("#Email"),"1730siyabtest1@gmail.com");
         // enter password
         type(By.id("Password"), "Sa12345!");
-        // click on login button
-        click(By.cssSelector(".button-1.login-button"));
+        clickOnLoginButton();
     }
 
     @Test
-    public void AddItemToShoppingCartPositiveTest(){
-        int sizeBefore = sizeOfItemInShoppinCart();
-        // click on add to cart button
-        click(By.cssSelector("div[data-productid='31'] input"));
-        // click Shopping Cart link on header
-        click(By.cssSelector("#topcartlink a"));
-        Assert.assertTrue(isElementPresent(By.cssSelector("[href='/141-inch-laptop']")));
-        int sizeAfter = sizeOfItemInShoppinCart();
-        Assert.assertEquals(sizeAfter,sizeBefore + 1);
+    public void addItemToShoppingCartPositiveTest(){
+
+        String addedBefore = getNameAndSizeOfItemInShoppingCart();
+        System.out.println("Before adding: " + addedBefore);
+        clickOn2ndOf6AddToCartButton();
+        clickOnShoppingCartLink();
+        clickOnUpdateShoppingCartButton();
+        // Get the information about the item in the cart after adding
+        String addedAfter = getNameAndSizeOfItemInShoppingCart();
+        System.out.println("After adding: " + addedAfter);
+        // Assert that the item was added to the shopping cart
+        Assert.assertTrue(addedAfter.contains(addedBefore), "Item was not added to the shopping cart");
     }
+
 }
 

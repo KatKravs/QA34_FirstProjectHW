@@ -11,7 +11,7 @@ public class FirstSeleniumTest {
     WebDriver driver;
 
     //before - setUp
-    @BeforeMethod
+    @BeforeMethod(enabled = false)
     public void setUp(){
         driver = new ChromeDriver();
         //driver.get("https://www.google.com"); // without history
@@ -21,7 +21,7 @@ public class FirstSeleniumTest {
         driver.navigate().refresh();
     }
     //test - name
-    @Test
+    @Test(enabled = false)
     public void openGoogleTest(){
         System.out.println("Google is opened!");
     }

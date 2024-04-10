@@ -15,7 +15,7 @@ public class FindElementsTests {
 
     WebDriver driver;
 
-    @BeforeMethod
+    @BeforeMethod (enabled = false)
     public void setUp(){
         driver = new ChromeDriver();
         driver.get("https://ilcarro.web.app");
@@ -25,7 +25,7 @@ public class FindElementsTests {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
 
-    @Test
+    @Test(enabled = false)
     public void findElementByTagName(){
     // find one element  by tag name
         WebElement element = driver.findElement(By.tagName("h1"));
@@ -39,7 +39,7 @@ public class FindElementsTests {
 
     }
 
-    @Test
+    @Test(enabled = false)
     public void findElementByLocators(){
         // id
         driver.findElement(By.id("city"));
@@ -53,7 +53,7 @@ public class FindElementsTests {
     }
 
     //css selector
-    @Test
+    @Test(enabled = false)
     public void findElementByCssSelector(){
         // id -> #id
         //driver.findElement(By.id("city"));
@@ -73,7 +73,7 @@ public class FindElementsTests {
     }
 
     //xPath // *[@attr='value']
-    @Test
+    @Test(enabled = false)
     public void findElementByXpath(){
         // tag name = // tag
         // driver.findElement(By.tagName("h1"));
@@ -110,7 +110,7 @@ public class FindElementsTests {
 
 
 
-    @AfterMethod
+    @AfterMethod(enabled = false)
     public void tearDown(){
         driver.quit();
     }

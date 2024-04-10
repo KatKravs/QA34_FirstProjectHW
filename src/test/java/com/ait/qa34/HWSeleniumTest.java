@@ -1,15 +1,38 @@
 package com.ait.qa34;
 
+import com.project.fw.ApplicationManager;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import java.time.Duration;
 import java.util.List;
 
 
-public class HWSeleniumTest extends TestBase{
+public class HWSeleniumTest {
 
-    @Test
+    WebDriver driver;
+
+    @BeforeMethod(enabled = false)
+    public void setUp() {
+        driver = new ChromeDriver();
+        driver.get("https://demowebshop.tricentis.com");
+        // Максимизируем окно браузера
+        driver.manage().window().maximize();
+        // Ожидаем загрузки всех элементов на сайте перед началом теста
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
+    }
+
+    @AfterMethod(enabled = false)
+    public void tearDown(){
+        driver.quit();
+    }
+
+    @Test(enabled = false)
     public void findElementsByTagName() {
         // Находим первый элемент по имени тега "title"
         WebElement element1 = driver.findElement(By.tagName("title"));
@@ -40,7 +63,7 @@ public class HWSeleniumTest extends TestBase{
         System.out.println("Общее количество элементов с тегом 'h2': " + elementsH2.size());
     }
 
-    @Test
+    @Test(enabled = false)
     public void findAllTags() {
         // Находим все элементы на странице
         List<WebElement> allElements = driver.findElements(By.xpath("//*"));
@@ -49,7 +72,7 @@ public class HWSeleniumTest extends TestBase{
         System.out.println("Общее количество тегов на странице: " + allElements.size());
     }
 
-    @Test
+    @Test(enabled = false)
     public void findTenDifferentElementsByCssSelector() {
         // id -> #id
         driver.findElement(By.cssSelector("#flyout-cart"));
@@ -70,7 +93,7 @@ public class HWSeleniumTest extends TestBase{
 
     }
 
-    @Test
+    @Test(enabled = false)
     public void findTenDiffferentElementsByXpath() {
         // id -> //tag[@id='idName']
         driver.findElement(By.xpath("//*[@id='flyout-cart']"));

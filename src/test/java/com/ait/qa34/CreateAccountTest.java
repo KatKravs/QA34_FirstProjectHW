@@ -1,33 +1,29 @@
 package com.ait.qa34;
 
-import org.openqa.selenium.By;
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import java.util.Random;
-
 public class CreateAccountTest extends TestBase {
+
+    @BeforeMethod
+    public void ensurePrecondition(){
+        if(!app.getUser().isLoginLinkPresent()){
+            app.getUser().clickOnLogOutLink();
+        }
+    }
+
     @Test
+
     public void createNewAccountPositivTest() {
-        Random random = new Random();
-        int i = random.nextInt(1000) + 1000;
-//        type(By.name("email"), + i + "siyabtest1@gmail.com"); .button-1 register-button
-        clickOnRegisterLink();
-        // enter FirstName
-        type(By.id("FirstName"), "John");
-        // enter LastName
-        type(By.id("LastName"),  "Smith");
-        // enter email
-        type(By.id("Email"), + i + "siyabtest1@gmail.com");
-        // enter password
-        type(By.id("Password"), "Sa12345!");
-        // enter ConfirmPassword
-        type(By.id("ConfirmPassword"), "Sa12345!");
-        clickOnRegisterButton();
-        clickOnContinueButton();
+        app.getUser().clickOnRegisterLink();
+        app.getUser().fillRegisterForm("John", "Smith");
+        app.getUser().fillRandomRegisterForm("siyabtest1@gmail.com", "Sa12345!");
+        app.getUser().clickOnRegisterButton();
+        app.getUser().clickOnContinueButton();
         // assert CustomerInfo is present //   так не делать --> //div[@class='header']//a[@href='/customer/info'] <--- так как это абсолютный путь
-        Assert.assertTrue(isElementPresent(By.cssSelector("ul:nth-child(1) .account")));
-        System.out.println(isElementPresent(By.cssSelector("ul:nth-child(1) .account")));
+        Assert.assertTrue(app.getUser().isAccountLinkPresent());
+        System.out.println(app.getUser().isAccountLinkPresent());
     }
 
 }

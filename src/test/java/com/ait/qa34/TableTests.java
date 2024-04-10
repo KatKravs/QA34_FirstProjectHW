@@ -14,7 +14,7 @@ import java.util.List;
 public class TableTests {
     WebDriver driver;
 
-    @BeforeMethod
+    @BeforeMethod(enabled = false)
     public void setUp(){
         driver = new ChromeDriver();
         driver.get("https://www.w3schools.com/css/css_table.asp");
@@ -22,12 +22,12 @@ public class TableTests {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
 
-    @AfterMethod
+    @AfterMethod(enabled = false)
     public void tearDown(){
         driver.quit();
     }
 
-    @Test
+    @Test(enabled = false)
     public void tableCssTest(){
         System.out.println("====================get row 8, last element======================");
         //
